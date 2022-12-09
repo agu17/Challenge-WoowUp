@@ -225,7 +225,7 @@ class TestSistema {
 		Alerta a1 = new Urgente(noexpirada, t1);
 		Alerta a2 = new Urgente(expirada, t1);
 		Alerta a3 = new Urgente(noexpirada2, t1);
-		Alerta a4 = new Urgente(noexpirada, t2);
+		Alerta a4 = new Informativa(noexpirada, t2);
 
 		
 
@@ -243,11 +243,10 @@ class TestSistema {
 		
 		//Alerta de tipo urgente.
 		assertEquals("Urgente", sistema.obtenerAlertasNoExpiradasDeUnTema(t1).get(0).getTipo());
-		/* 
+		
 		//Alerta de tipo Informativa.
 
-		Alerta a5 = new AlertaInformativa(t1,fechaMasVieja);
-		sistema.enviarAlertaA(u1,a5);
-		assertEquals(false, sistema.obtenerAlertasDeUnTema(t1).get(3).getAlertaParaTodos());*/
+		
+		assertEquals("Informativa", sistema.obtenerAlertasNoExpiradasDeUnTema(t2).get(0).getTipo());
 	}
 }
