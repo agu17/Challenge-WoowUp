@@ -68,7 +68,7 @@ public class Sistema {
     public void enviarAlertaAUnUsuario(Alerta unaAlerta, Usuario unUsuario){
         if(unUsuario.getTemas().contains(unaAlerta.getTema())){
             this.getAlertas().add(unaAlerta);
-        unUsuario.agregarAlerta(unaAlerta);
+            unUsuario.agregarAlerta(unaAlerta);
         }
         else{
             System.out.println("El usuario no posee el tema");

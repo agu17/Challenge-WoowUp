@@ -82,7 +82,7 @@ class TestSistema {
 	}
 	
 	@Test
-	void testEnviarAlertaA() {
+	void testEnviarAlertaAUnUsuario() {
 		Sistema sistema = Sistema.getInstance();
 
 		Usuario u1= new Usuario("Agustín");
@@ -106,6 +106,13 @@ class TestSistema {
 		sistema.enviarAlertaAUnUsuario(a1, u1);
 		assertEquals(1,u1.getAlertas().size());
 		assertEquals(0,u2.getAlertas().size());
+
+		Alerta a2 = new Informativa(fecha1, t1);
+
+		// en este caso el usuario no posee el tema, por lo que no se registra la alerta.
+		sistema.enviarAlertaAUnUsuario(a2, u2);
+		assertEquals(0,u2.getAlertas().size());
+
 		
 	}
  
