@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import modelo.*;
 
 class TestSistema {
-
+	// FEEDBACK: se hace 1 assert por test. Debería tener alguna especie de helper donde seteo las clases 1 vez.
 	@Test
 	void testRegistrarUsuario() {
 		Sistema sistema = Sistema.getInstance();

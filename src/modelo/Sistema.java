@@ -11,7 +11,10 @@ public class Sistema {
     private List<Usuario> usuarios;
     private List<Alerta> alertas;
 
-    
+    //FEEDBACK: En todas las clases quitar tanto los set que no uso como el atributo ID, si total no lo uso.
+    // El patrón singleton es innecesario, está bien hecho pero no tiene sentido aplicarlo ahora ya que en los test, al utilizar por cada test un getInstance lo va creando siempre
+    // El último item del problema podría pensarlo para delegar la responsabilidad de la clase sistema.
+
     private Sistema(){
         this.usuarios = new ArrayList<Usuario>();
         this.temas =  new ArrayList<Tema>();
@@ -28,7 +31,7 @@ public class Sistema {
 
     //getters
     public List<Usuario> getUsuarios(){
-            return this.usuarios;
+        return this.usuarios;
     }
     public List<Tema> getTemas(){
         return this.temas;
@@ -39,7 +42,6 @@ public class Sistema {
     public List<Alerta> getAlertas(){
         return this.alertas;
     }
-
 
     public void registrarUsuario(Usuario unUsuario){
         getUsuarios().add(unUsuario);
@@ -54,7 +56,6 @@ public class Sistema {
         unUsuario.agregarTema(unTema);
     }
 
-    
     public void enviarAlerta(Alerta unaAlerta){
         this.getAlertas().add(unaAlerta);
         unaAlerta.enviarAlerta(this.getUsuarios());
@@ -63,7 +64,6 @@ public class Sistema {
     public List<Alerta> obtenerLasAlertasDeUnUsuario(Usuario unUsuario){
         return unUsuario.getAlertas();
     }
-    
     
     public void enviarAlertaAUnUsuario(Alerta unaAlerta, Usuario unUsuario){
         if(unUsuario.getTemas().contains(unaAlerta.getTema())){
@@ -77,21 +77,14 @@ public class Sistema {
         
     }
 
-    
     public void alertaLeida(Alerta unaAlerta, Usuario unUsuario){
         unUsuario.leerAlerta(unaAlerta);    // acá puede ir tanto un objeto alerta, como directamente el id de alguna alerta.
     }
     
-
-    
-
     public List<Alerta> obtenerAlertasNoLeidasNoExpiradas(Usuario unUsuario){
         return unUsuario.obtenerAlertasNoLeidasNiExpiradas();
     }
 
-
-
-    
     public List<Alerta> obtenerAlertasDelTema(Tema unTema){
         List<Alerta> alertasDeUnTema= new ArrayList<>();
         for (Alerta alerta : this.getAlertas()) {
@@ -102,16 +95,13 @@ public class Sistema {
         return alertasDeUnTema;
     }
 
-
     public List<Alerta> obtenerAlertasNoExpiradas(List<Alerta> alertas){
-            LocalDateTime hoy = LocalDateTime.now();
-            alertas.removeIf(alert -> hoy.isAfter(alert.getFechaExpiracion()));
-            return alertas;
+        LocalDateTime hoy = LocalDateTime.now();
+        alertas.removeIf(alert -> hoy.isAfter(alert.getFechaExpiracion()));
+        return alertas;
     }
 
-
     public List<Alerta> obtenerAlertasNoExpiradasDeUnTema(Tema unTema){ 
-        
         List<Alerta> alertasDeUnTema = obtenerAlertasDelTema(unTema);
         List<Alerta> alertasDeUnTemaNoExpiradas = obtenerAlertasNoExpiradas(alertasDeUnTema);
         alertasDeUnTemaNoExpiradas.sort((alert1, alert2) -> alert1.getFechaExpiracion().compareTo(alert2.getFechaExpiracion()));
@@ -119,11 +109,5 @@ public class Sistema {
             System.out.println("El tipo de alerta es: " +  alerta.getTipo());
         }
         return alertasDeUnTemaNoExpiradas;
-        
     }
-
-
-   
-
-
 }

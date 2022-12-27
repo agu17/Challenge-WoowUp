@@ -13,7 +13,7 @@ public class Urgente extends Alerta{
     }
     public  void enviarAlerta(List<Usuario> usuarios){
         for (Usuario usuario : usuarios) {
-                usuario.agregarAlerta(this);
+            usuario.agregarAlerta(this);
         }
     }
 }

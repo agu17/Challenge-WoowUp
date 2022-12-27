@@ -16,7 +16,6 @@ public abstract class Alerta {
     public Alerta(LocalDateTime unaFechaDeExpiracion, Tema unTema){
         this.setFechaExpiracion(unaFechaDeExpiracion);
         this.setTema(unTema);
-
     }
 
     //getters
@@ -26,7 +25,6 @@ public abstract class Alerta {
     public LocalDateTime getFechaExpiracion(){
         return this.fechaExpiracion;
     }
-    
     public Tema getTema(){
         return this.tema;
     }
